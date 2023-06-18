@@ -32,8 +32,7 @@ function App() {
 
   const dispatch = useAppDispatch();
   useEffect(() => {
-    //console.log("1")
-    dispatch(initializeAppTC());
+     dispatch(initializeAppTC());
   }, []);
 
   if (!isInitialized) {
