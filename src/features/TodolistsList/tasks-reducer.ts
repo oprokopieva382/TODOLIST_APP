@@ -39,7 +39,6 @@ export const tasksReducer = (state: TasksStateType = initialState, action: Actio
     }
 }
 
-// actions
 export const removeTaskAC = (taskId: string, todolistId: string) => ({type: 'REMOVE-TASK', taskId, todolistId} as const)
 export const addTaskAC = (task: TaskType) => ({type: 'ADD-TASK', task} as const)
 export const updateTaskAC = (taskId: string, model: UpdateDomainTaskModelType, todolistId: string) => ({
@@ -54,7 +53,6 @@ export const setTasksAC = (tasks: Array<TaskType>, todolistId: string) => ({
     todolistId
 } as const)
 
-// thunks
 export const fetchTasksTC = (todolistId: string) => (dispatch: Dispatch<ActionsType | SetAppStatusActionType>) => {
     dispatch(setAppStatusAC('loading'))
     todolistsAPI.getTasks(todolistId)
@@ -122,7 +120,6 @@ export const updateTaskTC = (taskId: string, domainModel: UpdateDomainTaskModelT
             })
     }
 
-// types
 export type UpdateDomainTaskModelType = {
     title?: string
     description?: string

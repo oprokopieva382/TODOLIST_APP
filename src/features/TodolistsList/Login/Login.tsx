@@ -1,4 +1,3 @@
-import React from "react";
 import Grid from "@mui/material/Grid";
 import Checkbox from "@mui/material/Checkbox";
 import FormControl from "@mui/material/FormControl";
@@ -19,8 +18,8 @@ type FormikErrorType = {
 };
 
 export const Login = () => {
-    const dispatch = useAppDispatch()
-    const isLoggedIn = useAppSelector(state=> state.auth.isLoggedIn)
+  const dispatch = useAppDispatch();
+  const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -42,19 +41,17 @@ export const Login = () => {
       } else if (values.password.length < 3) {
         errors.password = "Invalid password address, too small";
       }
-
       return errors;
     },
     onSubmit: (values) => {
       dispatch(loginTC(values));
-      formik.resetForm()
+      formik.resetForm();
     },
   });
-//   console.log(formik.errors);
 
-if(isLoggedIn) {
-    return <Navigate to={"/"}/>
-}
+  if (isLoggedIn) {
+    return <Navigate to={"/"} />;
+  }
   return (
     <Grid container justifyContent={"center"}>
       <Grid item justifyContent={"center"}>
@@ -104,7 +101,7 @@ if(isLoggedIn) {
                 label={"Remember me"}
                 control={
                   <Checkbox
-                  checked={formik.values.rememberMe}
+                    checked={formik.values.rememberMe}
                     // name="rememberMe"
                     // onChange={formik.handleChange}
                     // checked={formik.values.rememberMe}

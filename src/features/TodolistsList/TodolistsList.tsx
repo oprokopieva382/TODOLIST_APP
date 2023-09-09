@@ -30,8 +30,6 @@ export const TodolistsList: React.FC = () => {
   const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
   const dispatch = useAppDispatch();
 
-  
-
   useEffect(() => {
      console.log("2");
     if (!isLoggedIn) return;

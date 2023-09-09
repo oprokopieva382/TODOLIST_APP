@@ -27,11 +27,10 @@ export const authReducer = (
       return state;
   }
 };
-// actions
+
 export const setIsLoggedInAC = (value: boolean) =>
   ({ type: "login/SET-IS-LOGGED-IN", value } as const);
 
-// thunks
 export const loginTC =
   (data: LoginType) => async (dispatch: Dispatch<ActionsType>) => {
     dispatch(setAppStatusAC("loading"));
@@ -66,24 +65,22 @@ export const initializeAppTC =
       dispatch(setIsInitializedAC(true));
     }
   };
-  export const logOutTC =
-    () => async (dispatch: Dispatch<ActionsType>) => {
-      dispatch(setAppStatusAC("loading"));
+export const logOutTC = () => async (dispatch: Dispatch<ActionsType>) => {
+  dispatch(setAppStatusAC("loading"));
 
-      try {
-        const res = await authAPI.logOut();
-        if (res.data.resultCode === 0) {
-          dispatch(setIsLoggedInAC(false));
-          dispatch(setAppStatusAC("succeeded"));
-        } else {
-          handleServerAppError(res.data, dispatch);
-        }
-      } catch (e) {
-        handleServerNetworkError((e as any).message, dispatch);
-      }
-    };
+  try {
+    const res = await authAPI.logOut();
+    if (res.data.resultCode === 0) {
+      dispatch(setIsLoggedInAC(false));
+      dispatch(setAppStatusAC("succeeded"));
+    } else {
+      handleServerAppError(res.data, dispatch);
+    }
+  } catch (e) {
+    handleServerNetworkError((e as any).message, dispatch);
+  }
+};
 
-// types
 type ActionsType =
   | ReturnType<typeof setIsLoggedInAC>
   | ReturnType<typeof setIsInitializedAC>
