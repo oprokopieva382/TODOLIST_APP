@@ -22,7 +22,6 @@ export const authReducer = (
   switch (action.type) {
     case "login/SET-IS-LOGGED-IN":
       return { ...state, isLoggedIn: action.value };
-
     default:
       return state;
   }
@@ -34,7 +33,6 @@ export const setIsLoggedInAC = (value: boolean) =>
 export const loginTC =
   (data: LoginType) => async (dispatch: Dispatch<ActionsType>) => {
     dispatch(setAppStatusAC("loading"));
-
     try {
       const res = await authAPI.login(data);
       if (res.data.resultCode === 0) {
@@ -50,7 +48,6 @@ export const loginTC =
 export const initializeAppTC =
   () => async (dispatch: Dispatch<ActionsType>) => {
     dispatch(setAppStatusAC("loading"));
-
     try {
       const res = await authAPI.me();
       if (res.data.resultCode === 0) {
@@ -67,7 +64,6 @@ export const initializeAppTC =
   };
 export const logOutTC = () => async (dispatch: Dispatch<ActionsType>) => {
   dispatch(setAppStatusAC("loading"));
-
   try {
     const res = await authAPI.logOut();
     if (res.data.resultCode === 0) {
